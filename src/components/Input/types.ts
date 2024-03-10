@@ -1,14 +1,7 @@
 import { ChangeEvent } from "react";
-import { RegisterOptions } from "react-hook-form";
+import { ValidationRules } from "../../types";
 
-type inputType = "text" | "password" | "email";
-
-interface ValidationRules {
-    required?: RegisterOptions["required"];
-    minLength?: RegisterOptions["minLength"];
-    maxLength?: RegisterOptions["maxLength"];
-    pattern?: RegisterOptions["pattern"];
-}
+type inputType = "text" | "password" | "email" | "file";
 
 export interface InputProps {
     type?: inputType;
@@ -21,4 +14,5 @@ export interface InputProps {
     onInput?: (value: string) => void;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     validation?: ValidationRules;
+    accept?: string
 }
