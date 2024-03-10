@@ -9,18 +9,18 @@ const isLogged = () => {
 };
 
 const ProtectedDashboardRoute: React.FC<{ element: React.ReactNode }> = ({ element }) => {
-  return isLogged() ? <>{element}</> : <Navigate to="/login" />;
+  return isLogged() ? <>{element}</> : <Navigate to="/dashboard" />;
 };
 
 const LoginRoute: React.FC<{ element: React.ReactNode }> = ({ element }) => {
-  return isLogged() ? <Navigate to="/dashboard" /> : <>{element}</>;
+  return isLogged() ? <Navigate to="/Login" /> : <>{element}</>;
 };
 
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginRoute element={<Login />} />} />
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<LoginRoute element={<Login />} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<ProtectedDashboardRoute element={<Dashboard />} />} />
