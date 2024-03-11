@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { ValidationRules } from "../../types";
 
-type inputType = "text" | "password" | "email" | "file";
+type inputType = "text" | "password" | "email" | "file" | "textarea";
 
 export interface InputProps {
     type?: inputType;

@@ -28,3 +28,20 @@ export const createUser = async (userRegister: UserRegisterType): Promise<UserRe
         return null;
     }
 }
+
+/**
+ * registra um novo contato na api
+ */
+export const createContact = async (contactRegister: UserRegisterType): Promise<UserResponseType | null> => {
+    try {
+        const response = await axios.post(genarateUrl('contact'), contactRegister, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data; 
+    } catch (error) {
+        return null;
+    }
+}
