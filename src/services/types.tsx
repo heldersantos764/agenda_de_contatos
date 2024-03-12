@@ -3,6 +3,7 @@ export interface UserDataType {
     email: string;
     nome: string;
     foto: string;
+    token?: string;
 }
 
 export interface UserResponseType {
