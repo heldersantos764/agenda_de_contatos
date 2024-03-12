@@ -8,8 +8,18 @@ const genarateUrl = (params: string): string => {
     return `${BASE_URL}${params}`;
 } 
 
-export const auth = async (userLogin: UserLoginType) => {
-    
+export const auth = async (userLogin: UserLoginType): Promise<UserResponseType | null> => {
+    try {
+        const response = await axios.post(genarateUrl('auth'), userLogin, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data; 
+    } catch (error) {
+        return null;
+    }
 }
 
 /**

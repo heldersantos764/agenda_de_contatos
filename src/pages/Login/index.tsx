@@ -2,13 +2,12 @@ import { FC } from "react";
 import Input from "../../components/Input";
 import { FormProvider, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useLogin } from "./useLogin";
+import LoadingOverlay from "../../components/LoadingOverlay";
 
 const Login: FC = () => {
   const methods = useForm();
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+  const { isLoading, onSubmit } = useLogin();
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -50,7 +49,7 @@ const Login: FC = () => {
             <div>
               <Input
                 type="password"
-                name="Senha"
+                name="senha"
                 label="Senha"
                 validation={{
                   required: "Senha obrigatória",
@@ -79,6 +78,7 @@ const Login: FC = () => {
             Criar conta
           </Link>
         </p>
+        <LoadingOverlay isLoading={isLoading} message="Enviando..."/>
       </div>
     </div>
   );
