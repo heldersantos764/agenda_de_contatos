@@ -1,7 +1,10 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import  GridCard from "../../components/GridCard";
 
-interface Props {}
+interface Props {
+  
+}
 
 const Dashboard: FC<Props> = (props) => {
   return (
@@ -9,6 +12,7 @@ const Dashboard: FC<Props> = (props) => {
       Dashboard
       <br />
       <Link to={'/'}>Go to Home</Link>
+      <GridCard/>
     </>
   );
 };
