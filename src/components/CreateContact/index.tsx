@@ -6,6 +6,7 @@ import LoadingOverlay from "../../components/LoadingOverlay";
 import TextareaAutosize from 'react-textarea-autosize';
 
 
+
 const CreateContact: FC = () =>{
 
     const methods = useForm<FormData>();
@@ -151,6 +152,7 @@ const CreateContact: FC = () =>{
                 >
                   Cadastrar contato
                 </button>
+                <button onClick={()=>setOpen (false)}></button>
               </div>
             </form>
           </FormProvider>
