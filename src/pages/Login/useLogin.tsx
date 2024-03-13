@@ -17,9 +17,9 @@ const useLogin = () => {
     console.log(response);
 
     if (response?.status && response?.status === 200) {
-      window.localStorage.setItem("@auth", response.data.token as string);
+      window.localStorage.setItem("@auth", JSON.stringify(response.data) as string);
       Swal.close();
-      navigate("dashboard");
+      navigate("/dashboard");
     } else {
       showErrorAlert("Erro ao cadastrar usuário.");
     }
