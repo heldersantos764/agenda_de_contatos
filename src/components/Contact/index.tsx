@@ -1,9 +1,14 @@
-import { FC } from "react";
+import { FC} from "react";
+import { userContact } from "./useContact";
 interface Props {}
 
 const Contact: FC<Props> = () => {
+
+  const { handleOnClick } = userContact();
+
+
   return (
-      <div className="flex flex-row bg-white shadow-md hover:shadow-lg hover:shadow-slate-300 w-full rounded-lg overflow-hidden border-2 border-white hover:border-gray-200 cursor-pointer">
+      <div id="1415" onClick = {(e) => handleOnClick(e) } className="flex flex-row bg-white shadow-md hover:shadow-lg hover:shadow-slate-300 w-full rounded-lg overflow-hidden border-2 border-white hover:border-gray-200 cursor-pointer">
         <div
           className="h-40 bg-gray-300 bg-cover bg-center w-1/4"
           style={{

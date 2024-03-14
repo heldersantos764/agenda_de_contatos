@@ -17,7 +17,7 @@ const Dashboard: FC<Props> = (props) => {
   return (
     <>
       <div className="relative">
-        <button className="bg-blue-800 text-white p-4 rounded-full absolute -top-14 right-0 hover:bg-blue-600 z-40">
+        <button className="bg-primary text-white p-4 rounded-full absolute -top-14 right-0 hover:bg-blue-600 z-40">
           <IoMdAdd title="Novo Contato"/>
         </button>
       </div>

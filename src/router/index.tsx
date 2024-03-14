@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import DefaultLaytout from "../layout/DefaultLayout";
 import { TitleProvider } from "../contexts/TitleContext";
+import EditContact from "../pages/EditContact";
 // import { CreateContact } from "../components/CreateContact";
 
 const isLogged = () => {
@@ -35,6 +36,7 @@ const Router: React.FC = () => {
         <Route path="/login" element={<LoginRoute element={<Login />} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />}/>
+        <Route path="/edit-contact/:id" element={<ProtectedRoute element={<EditContact />} />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
