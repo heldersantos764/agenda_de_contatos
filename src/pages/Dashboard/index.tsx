@@ -1,13 +1,9 @@
-import { FC, useEffect, useState } from "react";
-import CardContact from "../../components/CardContact";
+import { FC, useEffect } from "react";
 import { useTitle } from "../../contexts/TitleContext";
 import Contact from "../../components/Contact";
 import { IoMdAdd } from "react-icons/io";
 
-interface Props {}
-
-const Dashboard: FC<Props> = (props) => {
-  const [open, setOpen] = useState(false);
+const Dashboard: FC = () => {
   const { setTitle } = useTitle();
 
   useEffect(() => {
