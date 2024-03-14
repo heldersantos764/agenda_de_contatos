@@ -21,7 +21,7 @@ const useLogin = () => {
       Swal.close();
       navigate("/dashboard");
     } else {
-      showErrorAlert("Erro ao cadastrar usuário.");
+      showErrorAlert("Usuário ou senha incorreta.");
     }
 
     setIsLoading(false);

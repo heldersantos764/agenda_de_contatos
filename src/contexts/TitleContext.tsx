@@ -19,7 +19,7 @@ const TitleContext = createContext<TitleContextType | undefined>(undefined);
 
 export const TitleProvider: FC<TitleContextProps> = (props) => {
   const { children } = props;
-  const [title, setTitle] = useState("Título Padrão");
+  const [title, setTitle] = useState("");
 
   return (
     <TitleContext.Provider value={{ title, setTitle }}>

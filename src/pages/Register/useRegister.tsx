@@ -3,7 +3,6 @@ import { UserRegisterType } from "../../types";
 import { createUser } from "../../services/request";
 import { useState } from "react";
 import { showErrorAlert, showLoadingAlert, showSuccessAlert } from "../../components/Alerts";
-import { toast } from "react-toastify";
 
 const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,11 +17,9 @@ const useRegister = () => {
     const response = await createUser(user);
     
     if(response?.status && response?.status === 200){
-      // toast.success('Usuário cadastrado com sucesso.');
       showSuccessAlert("Usuário cadastrado com sucesso.")
     }else{
-      // toast.error("Usuário já casdastrado.")
-      showErrorAlert("Erro ao cadastrar usuário.")
+      showErrorAlert("Usuário já cadastrado.")
     }
 
     setIsLoading(false);

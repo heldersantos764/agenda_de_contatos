@@ -37,7 +37,7 @@ const Header: FC = () => {
   }, []);
 
   return (
-    <header className="bg-primary text-white border-b border-gray-200 fixed top-0 left-0 w-full flex justify-between items-center px-4 h-16">
+    <header className="bg-primary z-50 text-white border-b border-gray-200 fixed top-0 left-0 w-full flex justify-between items-center px-4 h-16">
       {/* Logo do Sistema */}
       <div className="flex items-center">
         <img

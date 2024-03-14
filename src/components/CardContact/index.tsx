@@ -4,7 +4,7 @@ import { ContactPropsType } from "./types";
 const CardContact: FC<ContactPropsType> = (props) => {
   const { data } = props;
   return (
-    <div className=" border border-slate-200 shadow rounded p-4 text-sm leading-6 mt-10">
+    <div className="border border-slate-200 shadow rounded p-4 text-sm leading-6 mt-10">
       <img
         className="w-12 h-12 rounded-full ring-2 mx-auto mb-6"
         src="./src/assets/logo.png"
