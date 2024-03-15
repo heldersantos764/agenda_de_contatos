@@ -1,3 +1,5 @@
+import { ContactType } from "../types";
+
 export interface UserDataType {
     id: string;
     email: string;
@@ -8,5 +10,10 @@ export interface UserDataType {
 
 export interface UserResponseType {
     data: UserDataType;
+    status: number;
+}
+
+export interface ContactResponseType {
+    data: ContactType;
     status: number;
 }

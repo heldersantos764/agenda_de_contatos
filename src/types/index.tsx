@@ -11,6 +11,16 @@ export interface UserRegisterType extends UserLoginType {
   confirmeSenha?: FieldValues;
 }
 
+export interface ContactRegisterType {
+  id?: string;
+  nome: string;
+  idUsuario?: string;
+  email?: string;
+  notas?: string;
+  foto?: string;
+  telefones?: PhoneType;
+}
+
 export interface ValidationRules {
   required?: RegisterOptions["required"];
   minLength?: RegisterOptions["minLength"];
@@ -35,7 +45,7 @@ export interface AddressType{
 export interface ContactType {
   id: string;
   nome: string;
-  idUsuario: string;
+  idUsuario?: string;
   apelido?: string;
   email?: string;
   notas?: string;

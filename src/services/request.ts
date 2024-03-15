@@ -1,16 +1,11 @@
 import axios from "axios";
 import { UserLoginType, UserRegisterType } from "../types";
 import { UserResponseType } from "./types";
-
-const BASE_URL = "http://localhost:5000/";
-
-const genarateUrl = (params: string): string => {
-    return `${BASE_URL}${params}`;
-} 
+import { BASE_URL_BECK_END } from "../configContantsApp";
 
 export const auth = async (userLogin: UserLoginType): Promise<UserResponseType | null> => {
     try {
-        const response = await axios.post(genarateUrl('auth'), userLogin, {
+        const response = await axios.post(`${BASE_URL_BECK_END}auth`, userLogin, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -27,7 +22,7 @@ export const auth = async (userLogin: UserLoginType): Promise<UserResponseType |
  */
 export const createUser = async (userRegister: UserRegisterType): Promise<UserResponseType | null> => {
     try {
-        const response = await axios.post(genarateUrl('user'), userRegister, {
+        const response = await axios.post(`${BASE_URL_BECK_END}user`, userRegister, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -39,19 +34,3 @@ export const createUser = async (userRegister: UserRegisterType): Promise<UserRe
     }
 }
 
-/**
- * registra um novo contato na api
- */
-export const createContact = async (contactRegister: UserRegisterType): Promise<UserResponseType | null> => {
-    try {
-        const response = await axios.post(genarateUrl('contact'), contactRegister, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        return response.data; 
-    } catch (error) {
-        return null;
-    }
-}

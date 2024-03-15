@@ -1,28 +1,27 @@
 import { FC, useEffect } from "react";
 import Input from "../../components/Input";
-import PhoneInput from "../../components/PhoneInput";
 import { FormProvider, useForm } from "react-hook-form";
-import { ContactRegisterType} from "../../types";
-import { useEditContact } from "./useEditContact";
+import { ContactRegisterType } from "../../types";
+import { useCreateContact } from "./useCreateContact";
 import LoadingOverlay from "../../components/LoadingOverlay";
 import { useTitle } from "../../contexts/TitleContext";
+import { useDataUser } from "../../hooks/useDataUser";
 
-
-const EditContact: FC = () => {
+const CreateContact: FC = () => {
   const methods = useForm<ContactRegisterType>();
-  const { onSubmit, isLoading } = useEditContact();
+  const { onSubmit, isLoading } = useCreateContact();
+  const { userData } = useDataUser();
 
   const { setTitle, setHasBackButton } = useTitle();
 
   useEffect(() => {
     setHasBackButton(true);
-    setTitle("Contato");    
+    setTitle("Novo Contato");
   }, []);
 
   return (
     <>
       <div className="flex min-h-full flex-col justify-center px-6 lg:px-8">
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <FormProvider {...methods}>
             <form
@@ -31,6 +30,8 @@ const EditContact: FC = () => {
               method="POST"
               onSubmit={methods.handleSubmit(onSubmit)}
             >
+              <Input type="hidden" value={userData?.token} name="token" />
+
               <div>
                 <Input
                   type="text"
@@ -62,32 +63,12 @@ const EditContact: FC = () => {
                 />
               </div>
 
-              {/* <div>
+              <div>
                 <Input
                   type="text"
                   name="telefone"
                   label="Celular"
                   placeholder="99 99999-9999"
-                  validation={{
-                    pattern: {
-                      value: /^\d{2}\s\d{5}-\d{4}$/,
-                      message: "Telefone inválido"
-                    }
-                  }}
-                />
-              </div> */}
-
-              <div>
-                <PhoneInput
-                  name="telefone"
-                  label="Celular"
-                  placeholder="99 99999-9999"
-                  validation={{
-                    pattern: {
-                      value: /^\d{2}\s\d{5}-\d{4}$/,
-                      message: "Telefone inválido"
-                    }
-                  }}
                 />
               </div>
 
@@ -97,7 +78,11 @@ const EditContact: FC = () => {
                   name="notas"
                   label="Notas"
                   validation={{
-                    maxLength: { value: 142, message: "Nota ultrapassa número máximo de 142 caracteres" },
+                    maxLength: {
+                      value: 142,
+                      message:
+                        "Nota ultrapassa número máximo de 142 caracteres",
+                    },
                   }}
                 />
               </div>
@@ -125,12 +110,11 @@ const EditContact: FC = () => {
               </div>
             </form>
           </FormProvider>
-
         </div>
       </div>
-      <LoadingOverlay isLoading={isLoading} message="Enviando..."/>
+      <LoadingOverlay isLoading={isLoading} message="Enviando..." />
     </>
   );
 };
 
-export default EditContact;
+export default CreateContact;

@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { showErrorAlert, showLoadingAlert } from "../../components/Alerts";
-import { auth } from "../../services/request";
+import { useUserService } from "../../services/useUserService";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useAlert } from "../../hooks/useAlert";
 
 const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { auth } = useUserService();
+  const { showErrorAlert, showLoadingAlert, closeAlerts} = useAlert()
 
   const onSubmit = async (data: any): Promise<void> => {
     setIsLoading(true);
@@ -18,7 +19,7 @@ const useLogin = () => {
 
     if (response?.status && response?.status === 200) {
       window.localStorage.setItem("@auth", JSON.stringify(response.data) as string);
-      Swal.close();
+      closeAlerts();
       navigate("/dashboard");
     } else {
       showErrorAlert("Usuário ou senha incorreta.");

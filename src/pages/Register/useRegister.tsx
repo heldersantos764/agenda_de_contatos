@@ -1,11 +1,13 @@
 import { SubmitHandler } from "react-hook-form";
 import { UserRegisterType } from "../../types";
-import { createUser } from "../../services/request";
 import { useState } from "react";
-import { showErrorAlert, showLoadingAlert, showSuccessAlert } from "../../components/Alerts";
+import { useUserService } from '../../services/useUserService'
+import { useAlert } from "../../hooks/useAlert";
 
 const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { createUser} = useUserService();
+  const { showErrorAlert, showLoadingAlert, showSuccessAlert } = useAlert();
 
   const onSubmit: SubmitHandler<UserRegisterType> = async (data: any) => {
     setIsLoading(true);

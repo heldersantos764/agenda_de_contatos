@@ -9,6 +9,8 @@ import React, {
 type TitleContextType = {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setHasBackButton: React.Dispatch<React.SetStateAction<boolean>>;
+  hasBackButton: boolean;
 };
 
 interface TitleContextProps {
@@ -20,9 +22,10 @@ const TitleContext = createContext<TitleContextType | undefined>(undefined);
 export const TitleProvider: FC<TitleContextProps> = (props) => {
   const { children } = props;
   const [title, setTitle] = useState("");
+  const [hasBackButton, setHasBackButton] = useState(false);
 
   return (
-    <TitleContext.Provider value={{ title, setTitle }}>
+    <TitleContext.Provider value={{ title, setTitle, setHasBackButton, hasBackButton}}>
       {children}
     </TitleContext.Provider>
   );

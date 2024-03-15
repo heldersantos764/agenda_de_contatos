@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-
+import { useNavigate } from "react-router-dom";
 
 export const showLoadingAlert = () => {
   Swal.fire({
@@ -19,6 +19,9 @@ export const showSuccessAlert = (message: string) => {
     title: "Sucesso!",
     text: message,
     confirmButtonText: "OK",
+  }).then(() => {
+    const navidate = useNavigate();
+    navidate(-1);
   });
 };
 

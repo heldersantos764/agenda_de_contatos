@@ -1,13 +1,17 @@
 import { SubmitHandler } from "react-hook-form";
-import { UserRegisterType } from "../../types";
-import { createContact } from "../../services/request";
-import { useState } from "react";
+import { ContactRegisterType} from "../../types";
+import { useContactService } from "../../services/useContactService"
+import { useEffect, useState } from "react";
 import { showErrorAlert, showLoadingAlert, showSuccessAlert } from "../../components/Alerts";
 
-const useCreateContact = () => {
-  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<UserRegisterType> = async (data: any) => {
+const useEditContact = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [contactData, setContactData] = useState<ContactType | null>(null);
+  const { createContact } = useContactService();
+
+  const onSubmit: SubmitHandler<ContactRegisterType> = async (data: any) => {
     setIsLoading(true);
     showLoadingAlert();
     const contact = { ...data };
@@ -16,9 +20,10 @@ const useCreateContact = () => {
     const response = await createContact(contact);
     
     if(response?.status && response?.status === 200){
-      showSuccessAlert("Usuário cadastrado com sucesso.")
+      showSuccessAlert("Contato cadastrado com sucesso.")
     }else{
-      showErrorAlert("Erro ao cadastrar usuário.")
+      showErrorAlert("Erro ao cadastrar contato.")
+      console.log(data)
     }
 
     setIsLoading(false);
@@ -44,10 +49,19 @@ const useCreateContact = () => {
     });
   };
 
+  useEffect(() => {
+    if (isEditing) {
+      console.log('Editando');
+    }
+  }, [isEditing]);
+
   return {
     onSubmit,
     isLoading,
+    isEditing,
+    setIsEditing,
+    contactData
   };
 };
 
-export { useCreateContact };
+export { useEditContact };
