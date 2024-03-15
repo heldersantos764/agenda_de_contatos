@@ -7,6 +7,7 @@ import DefaultLaytout from "../layout/DefaultLayout";
 import { TitleProvider } from "../contexts/TitleContext";
 import EditContact from "../pages/EditContact";
 import CreateContact from "../pages/CreateContact";
+import ContactDetails from "../pages/ContactDetails";
 
 const isLogged = () => {
   return !!window.localStorage.getItem("@auth");
@@ -36,6 +37,7 @@ const Router: React.FC = () => {
         <Route path="/login" element={<LoginRoute element={<Login />} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />}/>
+        <Route path="/contact-details/:id" element={<ProtectedRoute element={<ContactDetails />} />}/>
         <Route path="/create-contact" element={<ProtectedRoute element={<CreateContact />} />}/>
         <Route path="/edit-contact/:id" element={<ProtectedRoute element={<EditContact />} />}/>
         <Route path="*" element={<NotFound />} />

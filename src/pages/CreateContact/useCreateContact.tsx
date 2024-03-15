@@ -2,11 +2,12 @@ import { SubmitHandler } from "react-hook-form";
 import { ContactRegisterType } from "../../types";
 import { useContactService } from "../../services/useContactService"
 import { useState } from "react";
-import { showErrorAlert, showLoadingAlert, showSuccessAlert } from "../../components/Alerts";
+import { useAlert } from "../../hooks/useAlert";
 
 const useCreateContact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { createContact } = useContactService();
+  const { showErrorAlert, showLoadingAlert, showSuccessAlert } = useAlert();
 
   const onSubmit: SubmitHandler<ContactRegisterType> = async (data: any) => {
     setIsLoading(true);
@@ -14,13 +15,19 @@ const useCreateContact = () => {
     const contact = { ...data };
     const base64String = await fileToBase64(contact.foto[0]);
     contact.foto = base64String;
+    delete contact.telefone;
+    contact.telefones = [
+      {
+        tipo: "casa",
+        numero: data.telefone
+      }
+    ];
     const response = await createContact(contact);
     
     if(response?.status && response?.status === 200){
       showSuccessAlert("Contato cadastrado com sucesso.")
     }else{
       showErrorAlert("Erro ao cadastrar contato.")
-      console.log(data)
     }
 
     setIsLoading(false);

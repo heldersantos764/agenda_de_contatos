@@ -6,7 +6,7 @@ const userContact = () => {
 
     const handleOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const id = e.currentTarget.getAttribute("id");
-        navigate(`/edit-contact/${id}`);
+        navigate(`/contact-details/${id}`);
     }
 
     return {

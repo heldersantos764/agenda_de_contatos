@@ -25,6 +25,27 @@ const useContactService = () => {
         }
     }
 
+    const findContact = async (id: string): Promise<ContactResponseType | null > => {
+        try{
+            const auth = localStorage.getItem('@auth');
+            if (!auth) {
+                throw new Error('Token not found in localStorage');
+            }
+            console.log(`${BASE_URL_BECK_END}contact/${id}`)
+
+            const response = await axios.get(`${BASE_URL_BECK_END}contact/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': (JSON.parse(auth) as UserDataType).token
+                }
+            });
+
+            return response.data; 
+        }catch(error){
+            return null;
+        }
+    }
+
     const createContact = async (contactRegister: ContactType): Promise<ContactResponseType | null> => {
         try {
 
@@ -48,7 +69,8 @@ const useContactService = () => {
 
     return {
         createContact,
-        findAllContacts
+        findAllContacts,
+        findContact
     };
 }
 

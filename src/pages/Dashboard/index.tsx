@@ -9,7 +9,7 @@ import { ContactResponseType } from "../../services/types";
 const Dashboard: FC = () => {
   const { setTitle, setHasBackButton } = useTitle();
   const { findAllContacts } = useContactService();
-  const [contacts, setContacts] = useState<ContactResponseType[]>([]);
+  const [contacts, setContacts] = useState<ContactResponseType[] | null>([]);
 
   useEffect(() => {
     setHasBackButton(false);
@@ -18,7 +18,6 @@ const Dashboard: FC = () => {
     const fetchContacts = async () => {
       try {
         const response = await findAllContacts();
-        console.log(response.data);
         if (response !== null && Array.isArray(response.data)) {
           setContacts(response.data);
         }
@@ -42,10 +41,15 @@ const Dashboard: FC = () => {
       </div>
       <div className="flex gap-4 flex-row flex-wrap">
         {contacts.map((contact) => {
-          console.log(contact.email); // Acessando a propriedade email diretamente
           return (
-            // Renderizar componentes Contact ou outras informações do contato
-            <Contact key={contact.id} {...contact} />
+            <Contact
+              key={contact.id}
+              id={contact.id}
+              nome={contact.nome}
+              email={contact.email}
+              telefone={contact.telefones[0].numero}
+              foto={contact.foto}
+            />
           );
         })}
       </div>
