@@ -5,7 +5,6 @@ type inputType = "text" | "password" | "email" | "file" | "textarea";
 
 export interface InputProps {
     type?: inputType;
-    value?: string;
     placeholder?: string;
     id?: string;
     name: string;
@@ -15,4 +14,10 @@ export interface InputProps {
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     validation?: ValidationRules;
     accept?: string;
+    value?: { tipo: string, num: string };
 }
+
+export interface PhoneValue {
+    tipo: string;
+    num: string;
+  }
