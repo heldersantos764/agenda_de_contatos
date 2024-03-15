@@ -31,7 +31,6 @@ const useContactService = () => {
             if (!auth) {
                 throw new Error('Token not found in localStorage');
             }
-            console.log(`${BASE_URL_BECK_END}contact/${id}`)
 
             const response = await axios.get(`${BASE_URL_BECK_END}contact/${id}`, {
                 headers: {
